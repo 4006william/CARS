@@ -7,13 +7,14 @@ import {
     TableHead,
     TableRow
 } from '@material-ui/core'
-import cars from '../cars.json' // remove this
+import DeleteIcon from '@material-ui/icons/Delete'
+
 
 const Dashboard = (props) => {
     return (
         <Container maxWidth="lg" className="car-container">
-            {/* Change NAME to props.user.username */}
-            <h4>Welcome, {`NAME`}</h4>
+            <h4>Welcome, {props.user.username}</h4>
+        
             <Table>
                 <TableHead>
                     <TableRow>
@@ -21,30 +22,25 @@ const Dashboard = (props) => {
                         <TableCell>Make/Model</TableCell>
                         <TableCell>MPG</TableCell>
                         <TableCell>Cylinders</TableCell>
-                        <TableCell>Displacement</TableCell>
                         <TableCell>Horsepower</TableCell>
-                        <TableCell>Weight</TableCell>
-                        <TableCell>Acceleration</TableCell>
-                        <TableCell>Year</TableCell>
-                        <TableCell>Origin</TableCell>
+                        <TableCell>Delete</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                {/* Change cars to props.cars and remove the cars.json import above */}
-                {cars.map(car => (
+                {props.cars.map((car, idx) => (
                     <TableRow key={car.id}>
                         <TableCell component="th" scope="row">
                             {car.id}
                         </TableCell>
-                        <TableCell>{car["Name"]}</TableCell>
-                        <TableCell>{car["Miles_per_Gallon"]}</TableCell>
-                        <TableCell>{car["Cylinders"]}</TableCell>
-                        <TableCell>{car["Displacement"]}</TableCell>
-                        <TableCell>{car["Horsepower"]}</TableCell>
-                        <TableCell>{car["Weight_in_lbs"]}</TableCell>
-                        <TableCell>{car["Acceleration"]}</TableCell>
-                        <TableCell>{car["Year"]}</TableCell>
-                        <TableCell>{car["Origin"]}</TableCell>
+                        <TableCell>{car["name"]}</TableCell>
+                        <TableCell>{car["mpg"]}</TableCell>
+                        <TableCell>{car["cylinders"]}</TableCell>
+                        <TableCell>{car["horsepower"]}</TableCell>
+                        <TableCell>
+                            <DeleteIcon
+                                // add onClick method here
+                                className="icon text-red" />
+                        </TableCell>
                     </TableRow>
                 ))}
                 </TableBody>
